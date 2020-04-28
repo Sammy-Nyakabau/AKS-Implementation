@@ -9,8 +9,6 @@ def algo2(n):
                     m = minr
                     r = False
                     return m
-                    #print(r)
-                    #break
         minr = minr + 1
 
 def phi(n):
@@ -25,23 +23,21 @@ def algo4(n):
     #Step 1: If n = a^b for integers a > 1 and b > 1, output composite.
     for a in range(2,math.ceil(math.log(n,2))):  #log of base 2 is used because the least is a square number so need ot check atmost sqrt(n)
         b = math.log(n)/math.log(a)
-        #print(b)
+     
         if b == int(b): 
             return False
-            # break
-            # sys.exit('Coposit')
+           
 
     for a in range(2,algo2(n)):
-        #print(a)
+        
         if math.gcd(a,n) > 1 and math.gcd(a,n) < n:
             return False
-            #break
-            #quit()
+           
 
     #Step 4: If n ≤ r, output prime.
     if n <= algo2(n):
         return True
-        #quit()
+        
 
 
 
