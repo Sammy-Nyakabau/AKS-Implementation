@@ -16,7 +16,7 @@ The initial implementation was done in [python 3](https://www.python.org/). The 
 
 ## Final Notes
 
-The algorithm is not as faster as compared with other primality testing algorithms. Coupled with that is the use of python as a programming language which is not known for its speed. Using Brython to compile the python code into javascript also adds to the speed overhead. Thus, for testing purposes, make use of the [aks_final.py](https://github.com/Sammy-Nyakabau/AKS-Implementation/blob/master/aks_final.py). The Web UI is only responsive for numbers < 100. Above that, users will experience a massive lag before they can see an answer on the **Output Box**. 
+The algorithm is not as fast as compared with other primality testing algorithms. Coupled with that is the use of python as a programming language which is not known for its speed. Using Brython to compile the python code into javascript also adds to the speed overhead. Thus, for testing purposes, make use of the [aks_final.py](https://github.com/Sammy-Nyakabau/AKS-Implementation/blob/master/aks_final.py). The Web UI is only responsive for numbers < 100. Above that, users will experience a massive lag before they can see an answer on the **Output Box**. 
 
 ___
 
