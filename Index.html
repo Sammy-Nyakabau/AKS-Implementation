@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.js" integrity="sha256-rA89wPrTJJQFWJaZveKW8jpdmC3t5F9rRkPyBjz8G04=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js" integrity="sha256-Gnrw9tIjrsXcZSCh/wos5Jrpn0bNVNFJuNJI9d71TDs=" crossorigin="anonymous"></script>
+
+	<title>AKS Primality Testing</title>
+</head>
+
+<body onload="brython()">
+	<script type="text/python">
+		from browser import document
+
+		import math
+
+		def algo2(n):
+			minr = 2
+			r = True
+			while r == True:
+				for k in range(1,int(math.log(n,2)**2)):
+						if n**k % minr > (math.log(n))**2 :
+							m = minr
+							r = False
+							return m
+							#print(r)
+							#break
+				minr = minr + 1
+
+		def phi(n):
+			phi = 1                         # 1 because the range is 1 - minr 
+			for a in range(1,algo2(n)):
+				if math.gcd(a,algo2(n)) == 1:
+					phi = phi + 1
+					return phi
+
+
+		def algo4(n):
+			#Step 1: If n = a^b for integers a > 1 and b > 1, output composite.
+			for a in range(2,math.ceil(math.log(n,2))):  #log of base 2 is used because the least is a square number so need ot check atmost sqrt(n)
+				b = math.log(n)/math.log(a)
+				#print(b)
+				if b == int(b): 
+					return False
+					# break
+					# sys.exit('Coposit')
+
+			for a in range(2,algo2(n)):
+				#print(a)
+				if math.gcd(a,n) > 1 and math.gcd(a,n) < n:
+					return False
+					#break
+					#quit()
+
+			#Step 4: If n ≤ r, output prime.
+			if n <= algo2(n):
+				return True
+				#quit()
+
+
+
+		def algo5(n):
+			index = 0
+			for i in range(1,int(math.sqrt(phi(n))*math.log(n))):
+				multiple = i**n - i 
+				#print(multiple)
+				#print(i)
+				if multiple%n == 0: 
+					index = index + 1
+				else:
+					break
+			if index == int(math.sqrt(phi(n))*math.log(n)) - 1:
+				return True
+			else:
+				return False
+
+		def aks(n):
+			if algo5(n) is True or algo4(n) is True:
+				return f"{n} is prime"
+			elif algo4(n) is False or algo5(n) is False:
+				return f"{n} is not prime"
+		
+		def calculatePrime(e):
+			num = document["num"].value
+			document["output"].value = aks(int(num))
+		
+		def clearText(e):
+			document["num"].value = ""
+			document["output"].value = ""
+
+		document["btn_check"].bind("click", calculatePrime)
+		document["btn_reset"].bind("click", clearText)
+
+	</script>
+	<h1>AKS Primality Testing</h1>
+	<br><br>
+<div class="container-fluid ">
+  <p class="description text-center">Check if a given number is prime: <span class="clue">(AKS Implementation)</span></p>
+	<br>
+  <form>
+          <div class="form-group">
+			  <label>Input Box</label> <br>
+			  <input type="number" class="form-control" placeholder="Enter a number to test" id="num"
+        required> <br>
+			  <input type="button" value="Check" id="btn_check" class="btn btn-primary" onClick="calculatePrime()">
+			  <input type="button" value="Reset" id="btn_reset" class="btn btn-secondary" onClick="clearText()"> <br> <br>
+			  <label>Output Box</label><br>
+			  <textarea class="form-control" id="output"></textarea>
+		  </div>
+	  </form> 
+</div>
+</body>
+</html>
