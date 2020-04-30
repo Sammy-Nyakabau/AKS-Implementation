@@ -27,7 +27,7 @@ def algo4(n):
         if b == int(b): 
             return False
            
-
+    #Step 3: If 1<gcd(a,n)<n output prime.
     for a in range(2,algo2(n)):
         
         if math.gcd(a,n) > 1 and math.gcd(a,n) < n:
